@@ -1,25 +1,19 @@
 #!/usr/bin/env python3
 
-#SCRATCH
-class YrClient:
-    def __init__(self, http):
-        self.m_http = http;
+import client.yr_client as yr
 
-    def update(self, url):
-        response = self.m_http.get(url)
-        return response
-
+# Thin duck typed mocks
 class NotFoundHttp:
     def get(self, url):
         return {"status": 404}
-#END SCRATCH
 
+# Test suite
 class TestClient:
-
+    """The YrClient should behave predictably"""
     def test_wrong_url_not_found(self):
         """if we have a wrong url, we'd expect 404"""
         http = NotFoundHttp()
-        client = YrClient(http)
+        client = yr.YrClient(http)
 
         url = "wrong"
         response = client.update(url);
