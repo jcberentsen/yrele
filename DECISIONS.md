@@ -21,3 +21,5 @@ Bruk av Docker og docker compose etter oppgaven
 Github Actions for CI test kjøring
 
 README.md inneholder instruksjoner for oppsett og kjøring av tester og service. (på engelsk)
+
+Jeg forenkler med å utsette user auth, da dette typisk kan bli håndtert i middleware

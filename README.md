@@ -16,5 +16,34 @@ Python 3.14.5
 ❯ source venv/bin/activate
 ssb-case on  main [!] via 🐍 v3.14.5 (venv)
 ❯
+```
 
+# Run pytests
+
+Run all python core, client and service tests
+
+``` sh
+pytest
+```
+
+# Test the real http client on the command line (local db)
+``` sh
+python src/client/yr.py
+```
+
+# run the real http weather server on the command line (local db)
+``` sh
+python src/server/weather_server.py
+```
+
+# Build docker images
+TODO
+
+# Run docker compose
+TODO
+
+# Test with browser
+
+``` sh
+open "localhost:1876"
 ```
