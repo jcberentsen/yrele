@@ -8,7 +8,6 @@ python >= 3.14
 
 ``` sh
 brew install python
-...
 ❯ python3.14 --version
 Python 3.14.5
 
@@ -16,6 +15,7 @@ Python 3.14.5
 ❯ source venv/bin/activate
 ssb-case on  main [!] via 🐍 v3.14.5 (venv)
 ❯
+pip install -r requirements.txt
 ```
 
 # Run pytests
@@ -32,6 +32,7 @@ python src/client/yr.py
 ```
 
 # run the real http weather server on the command line (local db)
+(Uses uvicorn)
 ``` sh
 python src/server/weather_server.py
 ```
