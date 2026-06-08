@@ -37,6 +37,12 @@ python src/client/yr.py
 python src/server/weather_server.py
 ```
 
+# Database introspection
+``` sh
+python src/persistency/weather_data.py
+```
+
+
 # Build docker images
 TODO
 
@@ -44,6 +50,7 @@ TODO
 TODO
 
 # Test with browser
+http://127.0.0.1:1876/
 
 ``` sh
 open "localhost:1876"
