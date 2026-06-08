@@ -19,3 +19,8 @@ class TestClient:
         response = client.update(url);
         assert response["status"] == 404
         # TODO verify that the client took note of the error, so we can potentially persist issues for future investigation
+
+# TODO check successful response
+# TODO sanity check response so we don't persist garbage
+# TODO Check that valid weather response gets persisted
+# TODO Cache recent data for same location (check persistence)
