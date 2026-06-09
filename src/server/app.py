@@ -1,21 +1,18 @@
 #!/usr/bin/env python3
 
 from fastapi import FastAPI, status, Request, Depends
-from pydantic import BaseModel, Field
 
 from contextlib import asynccontextmanager
 
 import src.service.weather as service
+from src.service.location import Location
+from src.service.weather import Weather
 
-# TODO temporary, replace with db
-class EmptyPersistency:
-    def list_locations(self):
-        print("mock listing locations from persistency interface")
-        return [service.oslo]
+from tests.mocks import MockPersistency
 
 @asynccontextmanager
-async def lifespan(app: FastApi):
-    persistency = EmptyPersistency()
+async def lifespan(app: FastAPI):
+    persistency = MockPersistency() # TODO use SqlitePersistency
     weather = service.Weather(persistency)
     print("Yielding weather service from persistency")
     app.state.service = weather
@@ -45,7 +42,7 @@ async def delete_location(location_id: int, weather: Weather = Depends(get_weath
     # return {"locations": []}
 
 @app.post("/locations")
-async def create_location(location, status_code=status.HTTP_201_CREATED, weather: Weather = Depends(get_weather_service)):
+async def create_location(location : Location, status_code=status.HTTP_201_CREATED, weather: Weather = Depends(get_weather_service)):
     # TODO delegate to weather service
     fresh_location_id = 0
     # TODO introduce Location type, so we can validate the input
