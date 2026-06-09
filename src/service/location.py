@@ -3,9 +3,9 @@
 from pydantic import BaseModel, Field
 
 class Location(BaseModel):
-    name: str = Field(..., example="oslo")
-    lat: str = Field(..., example = "59.913")
-    lon: str = Field(..., example = "10.7522")
+    name: str = "oslo"
+    lat: str = "59.913"
+    lon: str = "10.7522"
 
 oslo : Location = {
         "name": "Oslo",
