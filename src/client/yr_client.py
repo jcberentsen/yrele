@@ -13,9 +13,8 @@ def locationQuery(location: Location):
     return urllib.parse.urlencode(data)
 
 class YrClient:
-    def __init__(self, baseUrl, http):
+    def __init__(self, http):
         self.m_http = http;
-        self.m_baseUrl = baseUrl
 
     def fetch_location(self, location: Location):
         query = locationQuery(location)

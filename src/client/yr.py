@@ -8,8 +8,7 @@ from src.service.location import Location, oslo
 
 def main():
     http = requests
-    baseUrl = ""
-    client = yr.YrClient(baseUrl, http)
+    client = yr.YrClient(http)
     response = client.fetch_location(oslo)
     pretty = json.dumps(response.json(), indent=4, sort_keys=True)
     print(pretty)
