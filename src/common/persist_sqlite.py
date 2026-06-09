@@ -6,8 +6,7 @@ class PersistencySqlite:
     def __init__(self):
         self.con = sqlite3.connect("localweather.db")
         cur = self.con.cursor()
-        # TODO for migration cur.execute("CREATE TABLE IF NOT EXISTS schema_version (version)")
-        cur.execute("CREATE TABLE IF NOT EXISTS locations (locationid, lat, lon)")
+        cur.execute("CREATE TABLE IF NOT EXISTS locations (locationid INTEGER PRIMARY KEY, lat, lon)")
         cur.execute("CREATE TABLE IF NOT EXISTS weather (locationid, timestamp, report)")
 
         # check tables
@@ -23,8 +22,9 @@ class PersistencySqlite:
         return self.list_locations()
 
     def add_location(self, location):
-        # TODO
-        location_id = 0 # TODO use sql for allocating location id
+        cursor = self.con.cursor()
+        cursor.execute("INSERT INTO locations (lat,lon) VALUES (?)", (location.lat, location.lon,))
+        location_id = cursor.lastrowid
         return {"created": location_id, "locations": self.list_locations()}
 
     def store_observation(location, weather_data):
