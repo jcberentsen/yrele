@@ -6,8 +6,7 @@ def main():
     con = sqlite3.connect("localweather.db")
     with con:
         cur = con.cursor()
-        cur.execute("CREATE TABLE IF NOT EXISTS user (id, name)")
-        cur.execute("CREATE TABLE IF NOT EXISTS userlocations (userid, locationid)")
+        # TODO for migration cur.execute("CREATE TABLE IF NOT EXISTS schema_version (version)")
         cur.execute("CREATE TABLE IF NOT EXISTS locations (locationid, lat, lon)")
         cur.execute("CREATE TABLE IF NOT EXISTS weather (locationid, timestamp, report)")
 
