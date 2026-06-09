@@ -27,6 +27,9 @@ pytest
 ```
 
 # Test the real http client on the command line (local db)
+
+This should successfully complete a weather request for the Oslo location
+
 ``` sh
 python src/client/yr.py
 ```
@@ -39,15 +42,15 @@ python src/server/weather_server.py
 
 # Database introspection
 ``` sh
-python src/persistency/weather_data.py
+> python src/persistency/weather_data.py
+[('user',), ('userlocations',), ('locations',), ('weather',)]
 ```
 
-
 # Build docker images
-TODO
+Dockerfile for server
 
 # Run docker compose
-TODO
+docker compose for volume mounting persistent (local) database
 
 # Test with browser
 http://127.0.0.1:1876/
@@ -55,3 +58,6 @@ http://127.0.0.1:1876/
 ``` sh
 open "localhost:1876"
 ```
+
+# CI Github actions
+TODO smoketest with docker compose and pytest
