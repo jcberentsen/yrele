@@ -53,6 +53,11 @@ docker-compose up --build
 open "localhost:1876"
 ```
 
+# inspect the fastapi docs
+[local docs](http://localhost:1876/docs)
+[openapi json](http://localhost:1876/openapi.json)
+[local docs redoc style](http://localhost:1876/redoc)
+
 # Database introspection
 ``` sh
 > python src/persistency/weather_data.py
