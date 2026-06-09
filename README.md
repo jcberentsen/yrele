@@ -3,6 +3,8 @@
 
 # Platform requirements
 python >= 3.14
+docker (colima)
+docker-compose
 
 # Get started - Macos
 
@@ -13,7 +15,7 @@ Python 3.14.5
 
 ❯ python3 -m venv venv
 ❯ source venv/bin/activate
-ssb-case on  main [!] via 🐍 v3.14.5 (venv)
+on  main [!] via 🐍 v3.14.5 (venv)
 ❯
 pip install -r requirements.txt
 ```
@@ -34,10 +36,21 @@ This should successfully complete a weather request for the Oslo location
 python src/client/yr.py
 ```
 
-# run the real http weather server on the command line (local db)
+# Run the real http weather server on the command line (local db)
 (Uses uvicorn)
 ``` sh
+# from python using uvicorn module
 python src/server/weather_server.py
+# or uvicorn middleware
+uvicorn src.server.app:app --port 1876 --reload
+# or using docker-compose
+docker-compose up --build
+```
+
+# Test with browser
+[localhost](http://localhost:1876/)
+``` sh
+open "localhost:1876"
 ```
 
 # Database introspection
@@ -51,12 +64,9 @@ Dockerfile for server
 
 # Run docker compose
 docker compose for volume mounting persistent (local) database
-
-# Test with browser
-http://127.0.0.1:1876/
-
 ``` sh
-open "localhost:1876"
+docker-compose up --build
+# This should start the docker container uvicorn webserver with the current folder volume-mounted
 ```
 
 # CI Github actions
