@@ -22,4 +22,5 @@ Github Actions for CI test kjøring
 
 README.md inneholder instruksjoner for oppsett og kjøring av tester og service. (på engelsk)
 
-Jeg forenkler med å utsette user auth, da dette typisk kan bli håndtert i middleware
+Oppgaven spesifiserer ikke multi-user, så jeg hopper over alt som har med bruker, auth, ident å gjøre. Dette gjør også persistens noe enklere.
+Jeg utelater db schema migrasjon, da dette er out of scope. Vi kan alltids gjenskape db fra upstream yr data, bruker må kanskje registrere locations på nytt.
