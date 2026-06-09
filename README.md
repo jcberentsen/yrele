@@ -25,6 +25,7 @@ pip install -r requirements.txt
 Run all python core, client and service tests
 
 ``` sh
+python -m pytest
 pytest
 ```
 
@@ -76,3 +77,10 @@ docker-compose up --build
 
 # CI Github actions
 TODO smoketest with docker compose and pytest
+
+# Chores
+Freeze updated requirements
+
+``` sh
+pip freeze > requirements.txt
+```
