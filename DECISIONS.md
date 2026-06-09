@@ -18,9 +18,11 @@ Git og github er naturlig etter oppgave-definisjon
 
 Bruk av Docker og docker compose etter oppgaven
 
-Github Actions for CI test kjøring
+Github Actions for CI test kjøring (om det blir tid)
 
 README.md inneholder instruksjoner for oppsett og kjøring av tester og service. (på engelsk)
 
 Oppgaven spesifiserer ikke multi-user, så jeg hopper over alt som har med bruker, auth, ident å gjøre. Dette gjør også persistens noe enklere.
 Jeg utelater db schema migrasjon, da dette er out of scope. Vi kan alltids gjenskape db fra upstream yr data, bruker må kanskje registrere locations på nytt.
+
+Bruker kan registrere locations, men vi gjør ingenting foreløbig for å hindre duplikater. Eksakte duplikater kan muligens sjekkes, men sammenligning av floats må takles.

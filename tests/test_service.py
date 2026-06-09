@@ -22,3 +22,4 @@ def test_we_can_add_two_different_locations(empty_service):
     location_id = service.add_location(kongsvinger)
     locations = service.list_locations();
     assert len(locations) == 2
+    # NOTE we consider duplicate locations to be ok, as they can differ in the minute lat, lon anyway, unless we quantize, which is probably not worth it
