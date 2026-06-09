@@ -8,11 +8,11 @@ import src.service.weather as service
 from src.service.location import Location
 from src.service.weather import Weather
 
-from tests.mocks import MockPersistency
+from src.common.persist_sqlite import PersistencySqlite
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    persistency = MockPersistency() # TODO use SqlitePersistency
+    persistency = PersistencySqlite()
     weather = service.Weather(persistency)
     print("Yielding weather service from persistency")
     app.state.service = weather
@@ -37,13 +37,8 @@ async def read_locations(weather: Weather = Depends(get_weather_service)):
 
 @app.delete("/locations/{location_id}")
 async def delete_location(location_id: int, weather: Weather = Depends(get_weather_service)):
-    # TODO delegate to weather service
     return weather.delete_location(location_id)
-    # return {"locations": []}
 
 @app.post("/locations")
 async def create_location(location : Location, status_code=status.HTTP_201_CREATED, weather: Weather = Depends(get_weather_service)):
-    # TODO delegate to weather service
-    fresh_location_id = 0
-    # TODO introduce Location type, so we can validate the input
-    return {"created": fresh_location_id, "locations": [location]}
+    return weather.add_location(location)
