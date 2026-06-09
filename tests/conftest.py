@@ -17,7 +17,6 @@ def yr_client_not_found():
     client = yr.YrClient(baseUrl, http)
     yield client
 
-
 class EmptyPersistency:
     def list_locations(self):
         return []

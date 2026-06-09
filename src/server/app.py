@@ -7,18 +7,11 @@ from contextlib import asynccontextmanager
 
 import src.service.weather as service
 
-
 # TODO temporary, replace with db
-oslo = {
-        "name": "Oslo",
-        "lat": 59.9139,
-        "lon": 10.7522
-        }
-
 class EmptyPersistency:
     def list_locations(self):
         print("mock listing locations from persistency interface")
-        return [oslo]
+        return [service.oslo]
 
 @asynccontextmanager
 async def lifespan(app: FastApi):
@@ -46,9 +39,10 @@ async def read_locations(weather: Weather = Depends(get_weather_service)):
     return {"locations": weather.list_locations()}
 
 @app.delete("/locations/{location_id}")
-async def delete_locations(location_id: int, weather: Weather = Depends(get_weather_service)):
+async def delete_location(location_id: int, weather: Weather = Depends(get_weather_service)):
     # TODO delegate to weather service
-    return {"locations": []}
+    return weather.delete_location(location_id)
+    # return {"locations": []}
 
 @app.post("/locations")
 async def create_location(location, status_code=status.HTTP_201_CREATED, weather: Weather = Depends(get_weather_service)):
