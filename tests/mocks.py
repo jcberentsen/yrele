@@ -5,6 +5,13 @@ class NotFoundHttp:
     def get(self, url):
         return {"status": 404}
 
+class FoundHttp:
+    def __init__(self, response_body):
+        self.response_body = response_body
+
+    def get(self, url):
+        return {"status": 200, "body": self.response_body}
+
 class MockPersistency:
     def __init__(self):
         self.locations = {}
