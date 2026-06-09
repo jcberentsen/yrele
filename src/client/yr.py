@@ -2,6 +2,7 @@
 
 import requests
 import urllib.parse
+import json
 
 from src.service.location import Location, oslo
 
@@ -17,7 +18,8 @@ def main():
 
     yrl = 'https://api.met.no/weatherapi/locationforecast/2.0/compact?' + query
     r = requests.get(yrl)
-    print(r.json())
+    pretty = json.dumps(r.json(), indent=4, sort_keys=True)
+    print(pretty)
 
     # print(r)
 
