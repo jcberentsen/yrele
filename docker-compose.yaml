@@ -1,0 +1,9 @@
+services:
+  web:
+    build: .
+    ports:
+      - "1876:1876"
+    volumes:
+      - .:/app
+    environment:
+      - PYTHONUNBUFFERED=1
