@@ -19,7 +19,7 @@ def yr_client_not_found():
 
 
 class EmptyPersistency:
-    def listLocations(self, user):
+    def list_locations(self):
         return []
 
 @pytest.fixture

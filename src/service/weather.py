@@ -4,5 +4,5 @@ class Weather:
     def __init__(self, persistency):
         self.persistency = persistency
 
-    def listLocations(self, user):
-        return self.persistency.listLocations(user)
+    def list_locations(self):
+        return self.persistency.list_locations()
