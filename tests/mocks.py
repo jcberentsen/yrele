@@ -6,18 +6,19 @@ class MockResponse:
         self.status_code = status
         self.body = body
 
+    @property
     def text(self):
         return self.body
 
 class NotFoundHttp:
-    def get(self, url):
+    def get(self, url, headers):
         return MockResponse(status=404)
 
 class FoundHttp:
     def __init__(self, response_body):
         self.response_body = response_body
 
-    def get(self, url):
+    def get(self, url, headers):
         return MockResponse(status=200, body=self.response_body)
 
 class MockPersistency:

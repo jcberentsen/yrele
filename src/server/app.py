@@ -9,12 +9,17 @@ from src.service.location import Location
 from src.service.weather import Weather
 
 from src.common.persist_sqlite import PersistencySqlite
+import src.client.yr_client as yr
+
+import requests
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     persistency = PersistencySqlite()
-    weather = service.Weather(persistency)
-    print("Yielding weather service from persistency")
+    http = requests
+    yr_client = yr.YrClient(http, persistency)
+    weather = service.Weather(persistency, yr_client)
+    print("Yielding weather service with persistency and yr client")
     app.state.service = weather
     yield {"service": weather}
 
@@ -42,3 +47,8 @@ async def delete_location(location_id: int, weather: Weather = Depends(get_weath
 @app.post("/locations")
 async def create_location(location : Location, status_code=status.HTTP_201_CREATED, weather: Weather = Depends(get_weather_service)):
     return weather.add_location(location)
+
+# weather api
+@app.post("/fetch")
+async def fetch_weather(weather: Weather = Depends(get_weather_service)):
+    return weather.fetch()

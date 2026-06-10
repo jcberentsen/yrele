@@ -26,7 +26,8 @@ def mock_yr_client(mock_persistency):
     yield client
 
 @pytest.fixture
-def empty_service(mock_persistency):
+def empty_service(mock_persistency, mock_yr_client):
     persistency = mock_persistency
-    weather = service.Weather(persistency)
+    yr = mock_yr_client
+    weather = service.Weather(persistency, yr)
     yield weather
