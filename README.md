@@ -2,12 +2,21 @@
 
 
 # Platform requirements
-python >= 3.14
-docker (colima)
-docker-compose
+
+* git
+* python >= 3.14
+* docker (colima)
+* docker-compose
 
 # Get started - Macos
 
+## clone repo
+
+``` sh
+git clone https://github.com/jcberentsen/yrele.git
+```
+
+## install python if necessary
 ``` sh
 brew install python
 ❯ python3.14 --version
@@ -26,6 +35,7 @@ Run all python core, client and service tests
 
 ``` sh
 python -m pytest
+# or
 pytest
 ```
 
@@ -34,7 +44,7 @@ pytest
 This should successfully complete a weather request for the Oslo location
 
 ``` sh
-python src/client/yr.py
+python -m src.client.yr
 ```
 
 # Run the real http weather server on the command line (local db)
@@ -61,7 +71,7 @@ open "localhost:1876"
 
 # Database introspection
 ``` sh
-> python src/persistency/weather_data.py
+> python -m src.persistency.weather_data
 [('user',), ('userlocations',), ('locations',), ('weather',)]
 ```
 
