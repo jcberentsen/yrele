@@ -2,7 +2,6 @@
 
 import urllib.parse
 
-# TODO move Location to common module
 from src.service.location import Location
 
 def locationQuery(location: Location):

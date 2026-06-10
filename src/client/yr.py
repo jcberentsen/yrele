@@ -9,13 +9,11 @@ from src.common.persist_sqlite import PersistencySqlite
 
 def main():
     http = requests
-    persistency = PersistencySqlite
+    persistency = PersistencySqlite()
     client = yr.YrClient(http, persistency)
     response = client.fetch_location(oslo)
     pretty = json.dumps(response.json(), indent=4, sort_keys=True)
     print(pretty)
-
-    # print(r)
 
 if __name__ == "__main__":
     main()
