@@ -20,11 +20,17 @@ class YrClient:
     def fetch_location(self, location: Location):
         query = locationQuery(location)
         yrl = 'https://api.met.no/weatherapi/locationforecast/2.0/compact?' + query
-        response = self.m_http.get(yrl)
+        user_agent = "yrele/1.0 jcberentsen@proton.me"
+        headers = {"User-Agent": user_agent}
+        response = self.m_http.get(yrl, headers=headers)
 
         if response.status_code < 400:
             # persist if we got a usable response
-            extracted = response.text # consider json()
+            extracted = response.text
             # TODO make an extract() function that picks out the information we are really interested in
+            print(f"We got a successful response from yr. Sized {len(extracted)} for {location}")
             self.m_persistency.store_observation(location, extracted)
+        else:
+            print(f"We got a failure response from yr for {location}: {response.status_code}")
+
         return response
