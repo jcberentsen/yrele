@@ -47,3 +47,10 @@ class PersistencySqlite:
         cursor = self.con.cursor()
         cursor.execute("INSERT INTO weather (locationid, report) VALUES (?,?)", (location.id, weather_data,))
         self.commit()
+
+    def load_forecasts(self, location_id):
+        cursor = self.con.cursor()
+        cursor.execute("SELECT * FROM weather WHERE locationid = ?", (location_id, ))
+        items = cursor.fetchall()
+        print(f"Weather forecasts: {items}")
+        return items

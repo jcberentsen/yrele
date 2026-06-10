@@ -19,3 +19,7 @@ class Weather:
         fetches = list(map(self.yr.fetch_location, locations))
         # TODO consider failed fetches
         return len(fetches)
+
+    def get_forecasts(self, location_id: int, fresh: bool):
+        forecasts = self.persistency.load_forecasts(location_id)
+        return forecasts

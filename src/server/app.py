@@ -52,3 +52,7 @@ async def create_location(location : Location, status_code=status.HTTP_201_CREAT
 @app.post("/fetch")
 async def fetch_weather(weather: Weather = Depends(get_weather_service)):
     return weather.fetch()
+
+@app.post("/forecasts")
+async def get_forecasts(location_id: int=1, fresh=True, weather: Weather = Depends(get_weather_service)):
+    return weather.get_forecasts(location_id, fresh)
